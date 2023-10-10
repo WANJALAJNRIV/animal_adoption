@@ -1,15 +1,30 @@
-<h2>Adoption Applications</h2>
-  <ul>
-    {% for application in applications %}
-      <li>
-        {{ application.applicant.username }} applied for {{ application.pet.name }}
-        <a href="{% url 'adoption_application_detail' application.id %}">Details</a>
+{% extends "users/base_staff.html" %}
 
 
+{% block title %} Adoption Application List Pet {% endblock %}
 
-        
-      </li>
-    {% empty %}
-      <li>No adoption applications available.</li>
+
+{% block content %} 
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
     {% endfor %}
+</div>
+{% endif %}
+
+
+  <ul>
+  {% for applied in grouped_applications %}
+
+  <li> <a href="{% url 'pet_adoption_applications' pet_id=applied.id %}" >  {{ applied.name }}</a></li>
+  {% empty %}
+      <li>No adoption applications available.</li> 
+
+  {% endfor %}
+
   </ul>
+{% endblock %}

@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Apply for Adoption</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+
+
+{% block title %} Apply for Adoption {% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
     <h2>Apply for Adoption - {{ pet.name }}</h2>
+
+    <h4> Feel free to submit any inquiries you may have here</h4> 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit Application</button>
     </form>
-</body>
-</html>
+
+
+{% endblock %}

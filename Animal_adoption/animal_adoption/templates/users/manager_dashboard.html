@@ -1,1 +1,22 @@
-manager dashboard
+{% extends "users/base_staff.html" %}
+
+
+
+{% block title %}  Manager Dashboard  {% endblock%}
+
+{% block content %}
+{% if messages %}
+    <div id="flash-messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+<h1> Manager Dashboard </h1>
+
+
+
+
+    {% endblock %}

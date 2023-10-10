@@ -1,0 +1,30 @@
+{% extends "users/base_staff.html" %}
+
+
+{% block title %} Pet Adoption Application {% endblock %}
+
+
+{% block content %} 
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<p> These are the individuals who have applied for the pet. </p> 
+<ol> 
+{% for pet_applications in  pet_applications %}
+
+    <li>  <a href="{% url 'adoption_application_detail' pet_applications.id %}">  {{ pet_applications.applicant }}  </a> </li> 
+
+
+{% endfor %}
+
+</ol>
+
+{% endblock %}

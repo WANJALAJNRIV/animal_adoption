@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pet Form</title>
-</head>
-<body>
+
+{% extends "users/base_staff.html" %}
+
+
+{% block title %} Pet Detail {% endblock %}
+
+
+{% block content %}
+
+<a href="{% url 'pet_list' %}"> Back to Pet List </a>
+
     <h2>Pet Form</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-</body>
-</html>
+
+
+    {% endblock %}

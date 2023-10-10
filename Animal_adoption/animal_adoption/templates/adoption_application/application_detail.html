@@ -1,23 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Adoption Application Details</title>
-</head>
-<body>
-    <h1>Adoption Application Details</h1>
-    <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
-    <p><strong>Pet Name:</strong> {{ application.pet.name }}</p>
-    <p><strong>Application Status:</strong> {{ application.get_application_status_display }}</p>
-    <p><strong>Application Date:</strong> {{ application.application_date }}</p>
-
-    <h2>Adopter Comments:</h2>
-    <p>{{ application.adopter_comments }}</p>
+{% extends "users/base_staff.html" %}
 
 
+{% block title %} Adoption Application Details {% endblock %}
+
+
+{% block content %} 
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h1>Adoption Application Details</h1>
+    
+    <!-- Pet Information -->
+    <div class="pet-info">
+        <h2> Pet Details </h2>
+        <img src="{{ application.pet.image.url }}" alt="{{ application.pet.name }}" width="100px" />
+        <p><strong>Pet Name: {{ application.pet.name }}</strong></p>
+        <p>Description: {{ application.pet.description }}</p>
+        <p>Age: {{ application.pet.age }}</p>
+        <p>Gender: {{ application.pet.gender }}</p>
+        <p>Species: {{ application.pet.species }}</p>
+        <p>Breed: {{ application.pet.breed }}</p>
+        <p>Suburb:{{ application.pet.suburb }}</p>
+        <p>State: {{ application.pet.state }}</p>
+    </div>
+
+
+    <!-- Applicant Information -->
+    <div>
+        <h2> Applicant Details </h2>
+        <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
+        <p>First Name: {{ application.applicant.first_name }}</p>
+        <p>Last Name: {{ application.applicant.last_name }}</p>
+        <p>Address: {{ application.applicant.address }}</p>
+        <p>Phone Number: {{ application.applicant.phone_number }}</p>
+        <p>Email: {{ application.applicant.email }}</p>
+        <p>Application Date: {{ application.application_date }}</p>
+        {% if application.adopter_comments %}
+                <h2>Adopter Comments:</h2>
+                <p>{{ application.adopter_comments }}</p>
+            {% endif %}
+    </div>
+  
+  
     <a href="{% url 'approve_application' application.id %}">Approve</a>
     <a href="{% url 'reject_application' application.id %}">Reject</a>
 
     <a href="{% url 'adoption_application_list' %}">Back to Application List</a>
-</body>
-</html>
+
+
+{% endblock %}

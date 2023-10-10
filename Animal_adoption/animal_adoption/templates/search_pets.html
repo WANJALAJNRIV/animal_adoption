@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Search</title>
+</head>
+<body>
+    <form method="GET">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    
+    <h2>Search Results</h2>
+    <ul>
+        {% for group in grouped_pets %}
+            <li>
+                <strong>{{ group.species }} - {{ group.breed }}</strong>
+                <ul>
+                    {% for pet in pets %}
+                        {% if pet.species == group.species and pet.breed == group.breed %}
+                            {% if pet.adoption_fee == form.cleaned_data.adoption_fee|default:pet.adoption_fee %}
+                                {% if pet.suburb == form.cleaned_data.suburb|default:pet.suburb %}
+                                    {% if pet.state == form.cleaned_data.state|default:pet.state %}
+                                        <li>{{ pet.name }} - Age: {{ pet.age }}, Gender: {{ pet.gender }}, Adoption Fee: {{ pet.adoption_fee }}, Suburb: {{ pet.suburb }}, State: {{ pet.state }}</li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>No pets found.</li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>

@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Shelter Detail</title>
-</head>
-<body>
+{% extends "users/base_staff.html" %}
+
+
+{% block title %} User Detail  {% endblock %}
+
+
+{% block content %}
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
     <h2>user Detail</h2>
-    <p> Password: {{ user.password }} </p> 
     <p><strong>Username:</strong> {{ user.username }}</p>
     <p><strong>First Name:</strong> {{ user.first_name }}</p>
     <p><strong>Last Name:</strong> {{ user.last_name }}</p>
@@ -15,5 +27,8 @@
 
     <a href="{% url 'user_update' user.id %}">Edit User</a>
     <a href="{% url 'user_delete' user.id %}">Delete User</a>
-</body>
-</html>
+
+    <a href="{% url 'user_list' %}">Back to users list </a>
+
+
+    {% endblock %}

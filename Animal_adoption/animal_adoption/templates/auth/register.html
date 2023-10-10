@@ -4,6 +4,16 @@
     <title>User Registration</title>
 </head>
 <body>
+    {% if messages %}
+    <div id="flash-messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
     <h2>User Registration</h2>
     <form method="post">
         {% csrf_token %}

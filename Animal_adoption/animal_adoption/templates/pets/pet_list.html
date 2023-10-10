@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pet List</title>
-</head>
-<body>
+{% extends "users/base_staff.html" %}
+
+
+{% block title %} Pet List {% endblock %}
+
+
+{% block content %}
+
     <h2>Pet List</h2>
     <ul>
         {% for pet in pets %}
@@ -11,5 +13,5 @@
         {% endfor %}
     </ul>
     <a href="{% url 'pet_create' %}">Add New Pet</a>
-</body>
-</html>
+
+{% endblock %}

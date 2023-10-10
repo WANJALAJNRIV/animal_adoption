@@ -1,14 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Form</title>
-</head>
-<body>
+{% extends "users/base_staff.html" %}
+
+
+{% block title %} User Form {% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+ 
+<a href="{% url 'user_list' %}"> Back to User List </a> 
+
     <h2>User Form</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-</body>
-</html>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+
+    {% block links %} {% endblock %}
+</head>
+<body>
+    <div>
+    
+            <h2>  Annie Arkwright's animal adoption organisation </h2>
+
+            <a href="{% url 'home' %}"> Home </a>
+            <a href={% url 'manager_dashboard' %}> Dashboard </a>
+            <a href="{% url 'adoption_application_list' %}"> Applications </a>
+            <a href="{% url 'pet_list' %}"> Pets </a>
+            <a href="{% url 'user_list' %}"> Users </a>
+
+
+            {% if user.is_authenticated %}
+                <a href={% url 'profile' %}> Profile  </a>
+                <a href={% url 'logout' %}> Log Out   </a>
+            {% else %} 
+                <a href="{% url 'login' %}">login</a>  or <a href="{% url 'register' %}">register</a>  
+            {% endif %}
+    
+            
+    </div>
+    {% block content %}
+
+    {% endblock %}
+    
+</body>
+</html>

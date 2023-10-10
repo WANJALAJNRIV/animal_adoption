@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pet List</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %} Pet List {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<div id="flash-messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
     <h2>Pet List</h2>
     <ul>
         {% for pet in pets %}
             <li><img src="{{ pet.image.url }}" alt="{{ pet.name }}" width=100px /> <a href="{% url 'public_pet_detail' pet.id %}"> {{ pet.name }} </a></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+  
+    {% endblock %}

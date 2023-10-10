@@ -12,6 +12,7 @@ urlpatterns = [
 
     path('applications/my/<int:application_id>/', views.public_application_detail, name='public_adoption_application_detail'),
 
+    path('applications_pet/<int:pet_id>/', views.pet_adoption_applications, name='pet_adoption_applications'),
 
 
 ]
