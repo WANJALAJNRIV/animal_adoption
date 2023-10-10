@@ -1,0 +1,7 @@
+<h2>{{ action }} Adoption Application</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">{{ action }}</button>
+</form>
+<a href="{% url 'adoption_application_list' %}">Back to Applications</a>

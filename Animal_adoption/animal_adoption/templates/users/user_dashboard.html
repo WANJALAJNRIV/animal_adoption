@@ -1,0 +1,16 @@
+user dashboard
+
+{% for application in applications  %}
+
+{{ application}}
+
+
+
+
+
+
+
+
+<a href="{% url 'public_adoption_application_detail' application_id=application.id %}"> application </a>
+
+{% endfor %}

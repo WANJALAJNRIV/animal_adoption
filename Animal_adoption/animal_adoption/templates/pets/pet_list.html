@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet List</title>
+</head>
+<body>
+    <h2>Pet List</h2>
+    <ul>
+        {% for pet in pets %}
+            <li><a href="{% url 'pet_detail' pet.id %}">{{ pet.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'pet_create' %}">Add New Pet</a>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet List</title>
+</head>
+<body>
+    <h2>Pet List</h2>
+    <ul>
+        {% for pet in pets %}
+            <li><img src="{{ pet.image.url }}" alt="{{ pet.name }}" width=100px /> <a href="{% url 'public_pet_detail' pet.id %}"> {{ pet.name }} </a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

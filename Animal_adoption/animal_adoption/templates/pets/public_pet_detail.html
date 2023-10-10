@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Detail</title>
+</head>
+<body>
+
+    <h2>Pet Detail</h2>
+    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
+
+    <h3>{{ pet.name }}</h3>
+    <p>Species: {{ pet.species }}</p>
+    <p>Breed: {{ pet.breed }}</p>
+    <p> Age: {{ pet.age }}</p> 
+    <p> Gender: {{ pet.gender }}</p>
+    <p> Description: {{ pet.description }} </p>
+    <p> Adoption Status: {{ pet.adoption_status }}</p>
+    <p> Suburb: {{ pet.suburb }}  </p>
+    <p> State: {{ pet.state }} </p>
+    <p> Adoption Fee: {{ pet.adoption_fee }} </p>
+    <p> Shelter: {{ pet.shelter }} </p> 
+    <p> Adopter: {{ pet.adopter }}</p>
+
+    <p> Date Joined: {{ pet.date_added }} </p>
+
+    <a href="{% url 'apply_for_adoption' pet_id=pet.id %}"> Apply </a>
+</body>
+</html>

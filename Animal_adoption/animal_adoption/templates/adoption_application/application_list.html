@@ -1,0 +1,15 @@
+<h2>Adoption Applications</h2>
+  <ul>
+    {% for application in applications %}
+      <li>
+        {{ application.applicant.username }} applied for {{ application.pet.name }}
+        <a href="{% url 'adoption_application_detail' application.id %}">Details</a>
+
+
+
+        
+      </li>
+    {% empty %}
+      <li>No adoption applications available.</li>
+    {% endfor %}
+  </ul>

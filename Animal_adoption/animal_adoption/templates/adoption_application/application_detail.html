@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adoption Application Details</title>
+</head>
+<body>
+    <h1>Adoption Application Details</h1>
+    <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
+    <p><strong>Pet Name:</strong> {{ application.pet.name }}</p>
+    <p><strong>Application Status:</strong> {{ application.get_application_status_display }}</p>
+    <p><strong>Application Date:</strong> {{ application.application_date }}</p>
+
+    <h2>Adopter Comments:</h2>
+    <p>{{ application.adopter_comments }}</p>
+
+
+    <a href="{% url 'approve_application' application.id %}">Approve</a>
+    <a href="{% url 'reject_application' application.id %}">Reject</a>
+
+    <a href="{% url 'adoption_application_list' %}">Back to Application List</a>
+</body>
+</html>

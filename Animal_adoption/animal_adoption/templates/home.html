@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home {% endblock %}
+
+
+{% block content%}
+
+
+
+{% for shelter in shelters %}
+<p> {{ shelter }}
+
+{% endfor %}
+
+
+{% for pet in pets %}
+<p> {{ pet }}
+
+{% endfor %}
+
+
+
+
+
+    <p> Hello, welcome to Annie adoption centre. </p>
+     
+
+    <h3> Wanna see pets? <a href="{% url 'public_pets_view' %}"> Pets </a></h3> 
+    <h3> we also have shelter check them out <a href="{% url 'shelter_list' %}"> shelter</a></h3>
+
+{% endblock%}

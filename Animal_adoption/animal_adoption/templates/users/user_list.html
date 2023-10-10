@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+    <h2>User List</h2>
+    <ul>
+
+
+        {% for user in users %}
+            <li>{{ user.username }}</li>
+
+            <a href =" {% url 'user_update'  pk=user.id %}" > <li> Update: {{ user.username }}</li>  </a>
+
+            <a href =" {% url 'user_delete'  pk=user.id %}" > <li> Delete: {{ user.username }}</li>  </a>
+
+            <a href =" {% url 'user_detail'  user_id=user.id %}" > <li> Details: {{ user.username }}</li>  </a>
+
+
+
+
+        {% endfor %}
+
+        
+    </ul>
+
+    <p> <a href={% url 'user_create' %}> Create User </a>
+</body>
+</html>
