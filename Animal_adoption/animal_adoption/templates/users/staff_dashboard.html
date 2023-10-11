@@ -1,27 +1,44 @@
 {% extends "users/base_staff.html" %}
 
-{%load static%}
+{% load static %}
 
 {% block links %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/users/staff_dashboard.css' %}">
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/users/staff_dashboard.css' %}">
 {% endblock %}
 
-{% block title %}  Manager Dashboard  {% endblock%}
+{% block title %} Dashboard {% endblock %}
 
 {% block content %}
 {% if messages %}
-    <div id="flash-messages">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+<div id="flash-messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
     </div>
-    {% endif %}
-<h1> Staff Dashboard </h1>
+    {% endfor %}
+</div>
+{% endif %}
 
+<h1>Dashboard</h1>
 
+<div class="dashboard-container">
+    <div class="dashboard-section">
+        <h2>Manage Pets</h2>
+        <p>As a staff member, you can manage and update pet information, including details, adoption status, and images.</p>
+        <a href="{% url 'pet_list' %}">Go to Pet Management</a>
+    </div>
 
+    <div class="dashboard-section">
+        <h2>Applications</h2>
+        <p>View and manage adoption applications from potential pet owners. Approve or reject applications here.</p>
+        <a href="{% url 'adoption_application_list' %}">Go to Applications</a>
+    </div>
 
-    {% endblock %}
+    <div class="dashboard-section">
+        <h2>User Management</h2>
+        <p>Manage user accounts, roles, and permissions. You can create, update, or deactivate user accounts.</p>
+        <a href="{% url 'user_list' %}">Go to User Management</a>
+    </div>
+</div>
+
+{% endblock %}

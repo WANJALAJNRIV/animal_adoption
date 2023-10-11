@@ -10,19 +10,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="pet-list-container">
-    <h2 class="pet-list-title">Pet List</h2>
-    <ul class="pet-list">
-        {% for pet in pets %}
-        <li class="pet-item">
-            <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
-            <div>
-                <a href="{% url 'pet_detail' pet.id %}" class="pet-link">{{ pet.name }}</a>
-                <p>Suburb: {{ pet.suburb }}, State: {{ pet.state }}</p>
+    
+    <div class="pet-list-container">
+        {% if messages %}
+            <div id="flash-messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             </div>
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'pet_create' %}" class="add-pet-link">Add New Pet</a>
-</div>
+        {% endif %}
+        <h2 class="pet-list-title">Pet List</h2>
+        <ul class="pet-list">
+            {% for pet in pets %}
+            <li class="pet-item">
+                <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
+                <div>
+                    <a href="{% url 'pet_detail' pet.id %}" class="pet-link">{{ pet.name }}</a>
+                    <p>Suburb: {{ pet.suburb }}, State: {{ pet.state }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'pet_create' %}" class="add-pet-link">Add New Pet</a>
+    </div>
 {% endblock %}

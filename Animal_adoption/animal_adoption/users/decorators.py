@@ -1,6 +1,7 @@
 from functools import wraps
-from django.shortcuts import redirect
 from django.contrib import messages
+from django.http import HttpResponseRedirect, HttpResponse
+
 
 def user_required(function):
     @wraps(function)
@@ -9,7 +10,12 @@ def user_required(function):
             return function(request, *args, **kwargs)
         else:
             messages.error(request, 'Permission denied.')
-            return redirect('permission_denied_page')  # Redirect to a permission denied page
+            previous_url = request.META.get('HTTP_REFERER')
+            if previous_url:
+                return HttpResponseRedirect(previous_url)
+            else:
+                # Handle the case where there's no previous URL
+                return HttpResponse("Permission denied")
     return wrapper
 
 
@@ -20,29 +26,41 @@ def admin_required(function):
             return function(request, *args, **kwargs)
         else:
             messages.error(request, 'Permission denied.')
-            return redirect('permission_denied_page')  # Redirect to a permission denied page
+            previous_url = request.META.get('HTTP_REFERER')
+            if previous_url:
+                return HttpResponseRedirect(previous_url)
+            else:
+                # Handle the case where there's no previous URL
+                return HttpResponse("Permission denied")
     return wrapper
-
 
 def application_manager_or_admin_required(view_func):
     @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
+    def wrapper(request, *args, **kwargs):
         if request.user.role in ['application_manager', 'admin']:
             return view_func(request, *args, **kwargs)
         else:
             messages.error(request, 'Permission denied.')
-            return redirect('permission_denied_page')
-
-    return _wrapped_view
+            previous_url = request.META.get('HTTP_REFERER')
+            if previous_url:
+                return HttpResponseRedirect(previous_url)
+            else:
+                # Handle the case where there's no previous URL
+                return HttpResponse("Permission denied")
+    return wrapper
 
 
 def pet_manager_or_admin_required(view_func):
     @wraps(view_func)
-    def _wrapped_view(request, *args, **kwargs):
+    def wrapper(request, *args, **kwargs):
         if request.user.role in ['pet_manager', 'admin']:
             return view_func(request, *args, **kwargs)
         else:
             messages.error(request, 'Permission denied.')
-            return redirect('permission_denied_page')
-
-    return _wrapped_view
+            previous_url = request.META.get('HTTP_REFERER')
+            if previous_url:
+                return HttpResponseRedirect(previous_url)
+            else:
+                # Handle the case where there's no previous URL
+                return HttpResponse("Permission denied")
+    return wrapper

@@ -34,7 +34,7 @@ def home(request):
     Returns:
         A rendered home page with context data.
     """
-    pets = Pet.objects.all().order_by('-last_updated')[:6]
+    pets = Pet.objects.filter(adoption_status='Available').order_by('-last_updated')[:6]
 
     return render(request, 'home.html',{ 'pets':pets})
 
@@ -111,7 +111,7 @@ def user_login(request):
                     if user.role == 'user':
                         messages.success(request, 'You have successfully logged in.')
                         return redirect('user_dashboard')
-                    elif user.role == 'manager':
+                    elif user.role == 'admin' or user.role == 'application_manager'  or user.role == 'pet_manager' :
                         messages.success(request, 'You have successfully logged in.')
                         return redirect('staff_dashboard')
                     else:

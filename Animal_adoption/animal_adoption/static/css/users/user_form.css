@@ -1,65 +1,88 @@
+.user-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-    .user-form-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+.page-title {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #3498db; /* Blue title */
+    text-align: center;
+}
 
-    .page-title {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        text-align: center;
-    }
+.user-form {
+    text-align: left;
+}
 
-    .user-form {
-        text-align: left;
-    }
+.form-label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333; /* Dark label text */
+}
 
-    .form-label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333; /* Dark text */
+}
 
-    .form-input {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-    .form-button {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+.form-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
 
-    .form-button:hover {
-        background-color: #267bb9;
-    }
-    .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
+.cancel-button {
+    background-color: #ccc;
+    color: #333;
+}
 
-    .alert {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
+.form-button:hover {
+    background-color: #267bb9;
+}
 
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
+.messages-container {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.alert {
+    background-color: #ff6b6b; /* Red background */
+    color: #fff; /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.error {
+    background-color: #ff6b6b; /* Red background */
+    color: #fff; /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

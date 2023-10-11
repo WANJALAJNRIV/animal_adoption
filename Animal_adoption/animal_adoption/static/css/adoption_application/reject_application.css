@@ -17,10 +17,11 @@
     }
 
     .alert {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
         padding: 10px;
+        border-radius: 5px;
         margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
     }
 
     .alert-success {
@@ -52,4 +53,11 @@
     .back-link {
         text-align: center;
         margin-top: 20px;
+    }
+    .error {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
     }

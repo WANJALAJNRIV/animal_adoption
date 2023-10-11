@@ -9,12 +9,12 @@
     }
 
     .alert {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
         padding: 10px;
+        border-radius: 5px;
         margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
     }
-
     .alert-success {
         background-color: #dff0d8;
         border-color: #d6e9c6;
@@ -53,4 +53,12 @@
 
     .btn-primary:hover {
         background-color: #267bbf;
+    }
+
+    .error {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
     }

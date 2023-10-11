@@ -12,11 +12,20 @@
             padding: 20px;
         }
 
+       
         .alert {
+            background-color: #ff6b6b; /* Red background */
+            color: #fff; /* White text */
             padding: 10px;
+            border-radius: 5px;
             margin-bottom: 10px;
-            border: 1px solid transparent;
-            border-radius: 4px;
+        }
+        .error {
+            background-color: #ff6b6b; /* Red background */
+            color: #fff; /* White text */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
         .alert-success {
@@ -82,4 +91,11 @@
     
         .btn-primary:hover {
             background-color: #267bbf;
+        }
+        .error {
+            background-color: #ff6b6b; /* Red background */
+            color: #fff; /* White text */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }

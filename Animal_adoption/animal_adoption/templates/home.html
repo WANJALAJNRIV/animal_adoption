@@ -8,36 +8,75 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="welcome-message">
-
-
-
   <p>Hello, welcome to Annie's adoption centre. Explore our pets and shelters!</p>
   {% if messages %}
-  <div id="flash-messages" class="messages-container">
+    <div id="flash-messages" class="messages-container">
       {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
-              {{ message }}
-          </div>
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
       {% endfor %}
-  </div>
-{% endif %}
+    </div>
+  {% endif %}
 </div>
-
 
 <div>
   {% for pet in pets %}
-  <div class="pet-card">
-    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
-    <a href="{% url 'public_pet_detail' pet.id %}">{{ pet.name }}</a>
-  </div>
+    <div class="pet-card">
+      <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
+      <a href="{% url 'public_pet_detail' pet.id %}">{{ pet.name }}</a>
+      <p>Find your forever friend today!</p>
+    </div>
   {% endfor %}
 </div>
 
 <div class="welcome-message">
   <h3>Ready to find your new friend?</h3>
+  <p>Discover your furry companion</p>
   <a class="btn" href="{% url 'public_pets_view' %}">Browse Pets</a>
 </div>
+
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <div class="card">
+      <h1>Find Your Perfect Companion</h1>
+      <p>Our shelter has a variety of loving pets waiting for a forever home.</p>
+    </div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="card">
+      <h1>Give Love, Get Love</h1>
+      <p>Adopting a pet is a rewarding experience that fills your life with joy and love.</p>
+    </div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="card">
+      <h1>Rescue, Adopt, Love</h1>
+      <p>Be a hero by giving a shelter pet a second chance at a happy life.</p>
+    </div>
+  </div>
+</div>
+
+<div class="dot-container">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<div class="random-words">
+  <p>Caring</p>
+  <p>Adoption</p>
+  <p>Love</p>
+  <p>Companionship</p>
+  <p>Animal Welfare</p>
+  <p>Rescue</p>
+  <p>Find your perfect match</p>
+</div>
+</div>
+
+<script src="{% static 'js/home.js' %}"></script>
 
 {% endblock %}

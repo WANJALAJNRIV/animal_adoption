@@ -36,3 +36,10 @@
     .confirmation-button:hover {
         background-color: #267bb9;
     }
+    .error {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }

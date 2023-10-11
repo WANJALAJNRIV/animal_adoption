@@ -75,3 +75,79 @@
         border-color: #d6e9c6;
         color: #3c763d;
     }
+
+
+  /* Add styles for the slideshow and cards here */
+  
+  .slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .mySlides {
+    display: none;
+    animation: fade 2s;
+  }
+  
+  .card {
+    padding: 20px;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+  }
+  
+  /* Style the dots */
+  .dot-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .active {
+    background-color: #717171;
+  }
+  
+  /* Fade animation */
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Add this to your 'home.css' or any CSS file you are using */
+.random-words {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.random-words p {
+  font-size: 14px;
+  background-color: #4CAF50; /* Green background color */
+  color: white; /* White text color */
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for each word */
+  transition: transform 0.3s; /* Add a smooth hover effect */
+}
+
+.random-words p:hover {
+  transform: scale(1.1); /* Enlarge the word on hover */
+  background-color: #45a049; /* Darker green background color on hover */
+}
+

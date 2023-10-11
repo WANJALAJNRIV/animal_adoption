@@ -15,12 +15,12 @@
         color: #333;
         text-align: center;
     }
-
     .alert {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
         padding: 10px;
+        border-radius: 5px;
         margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
     }
 
     .alert-success {
@@ -61,4 +61,11 @@
     .approve-button:hover,
     .reject-button:hover {
         background-color: #267bb9;
+    }
+    .error {
+        background-color: #ff6b6b; /* Red background */
+        color: #fff; /* White text */
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
     }
