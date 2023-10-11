@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} Delete User {% endblock %}
+{%load static%}
+
+{% block title %} Profile {% endblock %}
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/users/profile.css' %}">
+
+{% endblock %}
 
 {% block content %}
     {% if messages %}
@@ -33,47 +39,5 @@
 
 </div>
 
-<style>
-    .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
 
-    .alert {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
-
-    .user-profile-title {
-        font-size: 24px;
-        color: #333;
-        text-align: center;
-    }
-
-    .user-profile-info {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-top: 20px;
-    }
-
-    .user-profile-link {
-        display: block;
-        text-align: center;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #3498db;
-        font-weight: bold;
-    }
-</style>
 {% endblock %}

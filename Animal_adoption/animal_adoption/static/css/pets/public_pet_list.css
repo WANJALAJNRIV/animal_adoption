@@ -1,0 +1,85 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            color: #3c763d;
+        }
+
+        .pet-list-title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .pet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pet-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pet-image {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .pet-link {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    
+        select.form-control {
+            height: 40px; /* Adjust select box height as needed */
+        }
+    
+        .btn-primary {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    
+        .btn-primary:hover {
+            background-color: #267bbf;
+        }

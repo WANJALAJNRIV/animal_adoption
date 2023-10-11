@@ -1,47 +1,12 @@
 {% extends "users/base_staff.html" %}
 
+{%load static%}
+
 {% block title %} Delete User {% endblock %}
 
 {% block links %}
-<style>
-    .delete-user-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    <link rel="stylesheet" type="text/css" href="{% static 'css/users/user_confirm_delete.css' %}">
 
-    .page-title {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        text-align: center;
-    }
-
-    .confirmation-text {
-        text-align: left;
-        margin: 20px 0;
-    }
-
-    .confirmation-button {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    .confirmation-button:hover {
-        background-color: #267bb9;
-    }
-</style>
 {% endblock %}
 
 {% block content %}

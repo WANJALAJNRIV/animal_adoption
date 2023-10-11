@@ -1,93 +1,18 @@
 {% extends "base.html" %}
+
 {% load static %}
 
 {% block title %}Home{% endblock %}
 {% block links %}
-<style>
-  /* General Styles */
- 
-
-  h1 {
-    color: #333;
-    text-align: center;
-  }
-
-  /* Pet Styles */
-  .pet-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    display: inline-block;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .pet-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .pet-card a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  /* Welcome Message Styles */
-  .welcome-message {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-block;
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-
-  .btn:hover {
-    background-color: #2980b9;
-  }
-
-   .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
-
-    .alert {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
-
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <div class="welcome-message">
+
+
+
   <p>Hello, welcome to Annie's adoption centre. Explore our pets and shelters!</p>
   {% if messages %}
   <div id="flash-messages" class="messages-container">

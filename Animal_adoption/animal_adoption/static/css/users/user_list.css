@@ -1,0 +1,64 @@
+
+    .user-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .user-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .user-item {
+        margin: 10px 0;
+    }
+
+    .user-link {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    .create-user-link {
+        display: block;
+        margin-top: 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .create-user-link:hover {
+        background-color: #267bb9;
+    }.messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }

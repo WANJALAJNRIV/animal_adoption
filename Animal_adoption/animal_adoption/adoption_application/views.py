@@ -4,6 +4,7 @@ from .models import AdoptionApplication
 from pets.models import Pet
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from users.decorators import application_manager_or_admin_required
 
 
 @login_required
@@ -28,6 +29,7 @@ def apply_for_adoption(request, pet_id):
 
 
 @login_required
+@application_manager_or_admin_required
 def approve_application(request, application_id):
     application = get_object_or_404(AdoptionApplication, pk=application_id)
     if request.method == 'POST':
@@ -56,9 +58,10 @@ def approve_application(request, application_id):
             return redirect('adoption_application_list')
     else:
         form = AdoptionApplicationForm(instance=application)
-    return render(request, 'adoption_application/approve.html', {'form': form, 'action': 'Approve'})
+    return render(request, 'adoption_application/approve_application.html', {'form': form, 'action': 'Approve'})
 
 @login_required
+@application_manager_or_admin_required
 def reject_application(request, application_id):
     application = get_object_or_404(AdoptionApplication, pk=application_id)
     if request.method == 'POST':
@@ -70,11 +73,12 @@ def reject_application(request, application_id):
             return redirect('adoption_application_list')
     else:
         form = AdoptionApplicationForm(instance=application)
-    return render(request, 'adoption_application/reject.html', {'form': form, 'action': 'Reject'})
+    return render(request, 'adoption_application/reject_application.html', {'form': form, 'action': 'Reject'})
 
 
 
 @login_required
+@application_manager_or_admin_required
 def adoption_application_list(request):
 
     applications = AdoptionApplication.objects.filter(application_status='Pending')
@@ -91,6 +95,7 @@ def adoption_application_list(request):
 
 
 @login_required
+@application_manager_or_admin_required
 def adoption_application_detail(request, application_id):
     application = get_object_or_404(AdoptionApplication, pk=application_id)
     return render(request, 'adoption_application/application_detail.html', {'application': application})

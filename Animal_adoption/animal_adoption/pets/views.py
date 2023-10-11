@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db.models import Count
+from users.decorators import pet_manager_or_admin_required
+
 
 
 def search_pets(request):
@@ -77,6 +79,7 @@ def public_pet_detail(request, pet_id):
 
 
 @login_required
+@pet_manager_or_admin_required
 def pet_create(request):
     if request.method == 'POST':
         form = PetForm(request.POST, request.FILES)
@@ -90,12 +93,14 @@ def pet_create(request):
 
 
 @login_required
+@pet_manager_or_admin_required
 def pet_list(request):
     pets = Pet.objects.all()
     return render(request, 'pets/pet_list.html', {'pets': pets})
 
 
 @login_required
+@pet_manager_or_admin_required
 def pet_detail(request, pet_id):
     pet = get_object_or_404(Pet, pk=pet_id)
     return render(request, 'pets/pet_detail.html', {'pet': pet})
@@ -103,6 +108,7 @@ def pet_detail(request, pet_id):
 
 
 @login_required
+@pet_manager_or_admin_required
 def pet_update(request, pet_id):
     pet = get_object_or_404(Pet, pk=pet_id)
     if request.method == 'POST':
@@ -116,6 +122,7 @@ def pet_update(request, pet_id):
     return render(request, 'pets/pet_form.html', {'form': form})
 
 @login_required
+@pet_manager_or_admin_required
 def pet_delete(request, pet_id):
     pet = get_object_or_404(Pet, pk=pet_id)
     if request.method == 'POST':

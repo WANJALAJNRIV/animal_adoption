@@ -138,6 +138,9 @@ LOGIN_URL =  '/login/'
 
 
 # Define the directories where Django will search for static files.
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

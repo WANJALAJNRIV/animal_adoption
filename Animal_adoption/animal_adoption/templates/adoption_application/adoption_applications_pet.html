@@ -1,54 +1,11 @@
 {% extends "users/base_staff.html" %}
 
+{%load static%}
+
 {% block title %} Pet Adoption Application {% endblock %}
 
 {% block links %}
-<style>
-    .application-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .page-title {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        text-align: center;
-    }
-
-    .alert {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
-
-    .applicant-list {
-        list-style-type: decimal;
-        padding: 0;
-    }
-
-    .applicant-item {
-        margin: 10px 0;
-    }
-
-    .applicant-link {
-        text-decoration: none;
-        color: #3498db;
-        font-weight: bold;
-    }
-</style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adoption_application/adoption_applications_pet.css' %}">
 {% endblock %}
 
 {% block content %}

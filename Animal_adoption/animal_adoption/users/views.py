@@ -19,14 +19,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from adoption_application.models import AdoptionApplication
 from django.http import HttpResponseForbidden
-
-from .decorators import manager_required
-
+from .decorators import user_required, admin_required
 
 
-
-
-@manager_required
 def home(request):
     """
     Render the home page with a list of pets and shelters.
@@ -146,6 +141,7 @@ def user_logout(request):
 
 
 @login_required
+@user_required
 def user_dashboard(request):
     """
     Display the user dashboard.
@@ -164,12 +160,11 @@ def user_dashboard(request):
 
 @login_required
 def staff_dashboard(request):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
     return render(request, 'users/staff_dashboard.html')
 
 
 @login_required
+@admin_required
 def user_list(request):
 
     users = User.objects.all()
@@ -177,6 +172,7 @@ def user_list(request):
 
 
 @login_required
+@admin_required
 def user_detail(request, user_id):
   
     user = get_object_or_404(User, pk=user_id)
@@ -184,6 +180,7 @@ def user_detail(request, user_id):
 
 
 @login_required
+@admin_required
 def user_create(request):
 
     if request.method == 'POST':
@@ -200,6 +197,7 @@ def user_create(request):
 
 
 @login_required
+@admin_required
 def user_update(request, pk):
  
     user = get_object_or_404(User, pk=pk)
@@ -217,6 +215,7 @@ def user_update(request, pk):
 
 
 @login_required
+@admin_required
 def user_delete(request, pk):
  
     user = get_object_or_404(User, pk=pk)

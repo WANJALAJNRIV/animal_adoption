@@ -1,7 +1,16 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth/login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icon_.png' %}">
+
+    
+
 </head>
 <body>
     {% if messages %}
@@ -24,64 +33,4 @@
 </body>
 </html>
 
-<style>
-    .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
 
-    .alert {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
-
-    .login-title {
-        font-size: 24px;
-        color: #333;
-        text-align: center;
-    }
-
-    .login-form {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .login-button {
-        display: block;
-        margin-top: 20px;
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .login-button:hover {
-        background-color: #267bb9;
-    }
-
-    .register-link {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .register-button {
-        text-decoration: none;
-        color: #3498db;
-        font-weight: bold;
-    }
-</style>

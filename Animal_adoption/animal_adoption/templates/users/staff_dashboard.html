@@ -1,6 +1,11 @@
 {% extends "users/base_staff.html" %}
 
+{%load static%}
 
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/users/staff_dashboard.css' %}">
+
+{% endblock %}
 
 {% block title %}  Manager Dashboard  {% endblock%}
 

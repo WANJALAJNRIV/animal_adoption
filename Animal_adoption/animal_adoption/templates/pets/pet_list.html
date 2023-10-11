@@ -1,70 +1,12 @@
 {% extends "users/base_staff.html" %}
 
+{%load static%}
+
 {% block title %} Pet List {% endblock %}
 
 {% block links %}
-<style>
-    .pet-list-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pets/pet_list.css' %}">
 
-    .pet-list-title {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        text-align: center;
-    }
-
-    .pet-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .pet-item {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .pet-image {
-        width: 100px;
-        height: 100px;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .pet-link {
-        text-decoration: none;
-        color: #3498db;
-        font-weight: bold;
-    }
-
-    .add-pet-link {
-        display: block;
-        margin-top: 20px;
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .add-pet-link:hover {
-        background-color: #267bb9;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
