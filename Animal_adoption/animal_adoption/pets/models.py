@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import User
-from shelters.models import Shelter  # Import Shelter model from the correct app
 
 class Pet(models.Model):
     GENDER_CHOICES = [
@@ -25,7 +24,6 @@ class Pet(models.Model):
     suburb = models.CharField(max_length=100, blank=True)
     state = models.CharField(max_length=50, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    shelter = models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True, blank=True)
     adopter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True) 

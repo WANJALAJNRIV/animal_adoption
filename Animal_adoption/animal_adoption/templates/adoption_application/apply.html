@@ -1,30 +1,86 @@
-
 {% extends "base.html" %}
 
-
-{% block title %} Apply for Adoption {% endblock %}
-
+{% block title %} Apply for Adoption - {{ pet.name }} {% endblock %}
 
 {% block content %}
-
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    {% if messages %}
+        <div id="flash-messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    {% endif %}
+
+    <div class="apply-for-adoption-container">
+        <h2 class="adoption-title">Apply for Adoption - {{ pet.name }}</h2>
+
+        <h4 class="adoption-subtitle">Feel free to submit any inquiries you may have here</h4>
+
+        <form method="post" class="adoption-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+        </form>
+    </div>
 </div>
-{% endif %}
 
-    <h2>Apply for Adoption - {{ pet.name }}</h2>
+<style>
+    .apply-for-adoption-container {
+        text-align: center;
+    }
 
-    <h4> Feel free to submit any inquiries you may have here</h4> 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit Application</button>
-    </form>
+    .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
 
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
 
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+    .adoption-title {
+        font-size: 24px;
+        color: #333;
+    }
+
+    .adoption-subtitle {
+        font-size: 18px;
+        margin: 20px 0;
+    }
+
+    .adoption-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 10px 0;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+    }
+
+    .btn-primary:hover {
+        background-color: #267bbf;
+    }
+</style>
 {% endblock %}

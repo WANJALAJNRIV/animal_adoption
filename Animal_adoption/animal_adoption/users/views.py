@@ -15,17 +15,18 @@ from django.shortcuts import (
 )
 from .models import User
 from pets.models import Pet
-from shelters.models import Shelter
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from adoption_application.models import AdoptionApplication
 from django.http import HttpResponseForbidden
 
+from .decorators import manager_required
 
 
 
 
 
+@manager_required
 def home(request):
     """
     Render the home page with a list of pets and shelters.
@@ -39,9 +40,8 @@ def home(request):
         A rendered home page with context data.
     """
     pets = Pet.objects.all().order_by('-last_updated')[:6]
-    shelters = Shelter.objects.all()[:6]
 
-    return render(request, 'home.html',{ 'pets':pets, 'shelters': shelters})
+    return render(request, 'home.html',{ 'pets':pets})
 
 
 @login_required
@@ -58,7 +58,6 @@ def profile(request):
     return render(request, 'users/profile.html')
 
 
-@login_required
 def register(request):
     """
     Register a new user.
@@ -119,7 +118,7 @@ def user_login(request):
                         return redirect('user_dashboard')
                     elif user.role == 'manager':
                         messages.success(request, 'You have successfully logged in.')
-                        return redirect('manager_dashboard')
+                        return redirect('staff_dashboard')
                     else:
                         messages.success(request, 'You have successfully logged in.')
                         return redirect('profile')  
@@ -164,41 +163,35 @@ def user_dashboard(request):
 
 
 @login_required
-def manager_dashboard(request):
+def staff_dashboard(request):
     if request.user.role != 'manager':
         return HttpResponseForbidden("You don't have permission to access this page.")
-    return render(request, 'users/manager_dashboard.html')
+    return render(request, 'users/staff_dashboard.html')
 
 
 @login_required
 def user_list(request):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+
     users = User.objects.all()
     return render(request, 'users/user_list.html', {'users': users})
 
 
 @login_required
 def user_detail(request, user_id):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+  
     user = get_object_or_404(User, pk=user_id)
     return render(request, 'users/user_detail.html', {'user': user})
 
 
 @login_required
 def user_create(request):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])  
-            user.save()  
+            user.save() 
             messages.success(request, 'User has been created successfully.')
             return redirect('user_list')
     else:
@@ -208,14 +201,14 @@ def user_create(request):
 
 @login_required
 def user_update(request, pk):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+ 
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  
+            user.save()
             messages.success(request, 'User has been updated successfully.')
             return redirect('user_list')
     else:
@@ -225,9 +218,7 @@ def user_update(request, pk):
 
 @login_required
 def user_delete(request, pk):
-    if request.user.role != 'manager':
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+ 
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         user.delete()

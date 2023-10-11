@@ -41,7 +41,34 @@ def search_pets(request):
 
 def public_pets_view(request):
     pets = Pet.objects.filter(adoption_status='Available')
-    return render(request, 'pets/public_pet_list.html', {'pets': pets})
+    if request.method == 'GET':
+        form = PetSearchForm(request.GET)
+        if form.is_valid():
+            species = form.cleaned_data.get('species')
+            breed = form.cleaned_data.get('breed')
+            age = form.cleaned_data.get('age')
+            gender = form.cleaned_data.get('gender')
+            adoption_fee = form.cleaned_data.get('adoption_fee')
+            suburb = form.cleaned_data.get('suburb')
+            state = form.cleaned_data.get('state')
+
+            if species:
+                pets = pets.filter(species__icontains=species)
+            if breed:
+                pets = pets.filter(breed__icontains=breed)
+            if age:
+                pets = pets.filter(age=age)
+            if gender:
+                pets = pets.filter(gender=gender)
+            if adoption_fee:
+                pets = pets.filter(adoption_fee=adoption_fee)
+            if suburb:
+                pets = pets.filter(suburb__icontains=suburb)
+            if state:
+                pets = pets.filter(state__icontains=state)
+
+    grouped_pets = pets.values('species', 'breed').annotate(total=Count('id'))
+    return render(request, 'pets/public_pet_list.html', {'pets': pets, 'grouped_pets': grouped_pets, 'form': form})
 
 
 def public_pet_detail(request, pet_id):

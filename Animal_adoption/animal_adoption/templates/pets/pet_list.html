@@ -1,17 +1,86 @@
 {% extends "users/base_staff.html" %}
 
-
 {% block title %} Pet List {% endblock %}
 
+{% block links %}
+<style>
+    .pet-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-list-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .pet-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .pet-item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .pet-image {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .pet-link {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    .add-pet-link {
+        display: block;
+        margin-top: 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .add-pet-link:hover {
+        background-color: #267bb9;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-
-    <h2>Pet List</h2>
-    <ul>
+<div class="pet-list-container">
+    <h2 class="pet-list-title">Pet List</h2>
+    <ul class="pet-list">
         {% for pet in pets %}
-            <li><a href="{% url 'pet_detail' pet.id %}">{{ pet.name }}</a></li>
+        <li class="pet-item">
+            <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
+            <div>
+                <a href="{% url 'pet_detail' pet.id %}" class="pet-link">{{ pet.name }}</a>
+                <p>Suburb: {{ pet.suburb }}, State: {{ pet.state }}</p>
+            </div>
+        </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'pet_create' %}">Add New Pet</a>
-
+    <a href="{% url 'pet_create' %}" class="add-pet-link">Add New Pet</a>
+</div>
 {% endblock %}

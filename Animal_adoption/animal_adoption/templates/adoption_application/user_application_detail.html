@@ -1,7 +1,86 @@
-{{ application.applicant }}
+{% extends "users/base_user.html" %}
 
-{{ application.pet }}
+{% block title %} Application Detail {% endblock %}
 
-{{ application.application_status }}
+{% block content %}
 
-{{ application.manager_comments }}
+<div class="container">
+        {% if messages %}
+            <div id="flash-messages" class="messages-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <a href="{% url 'user_dashboard' %}">Dashboard</a>
+
+
+        <h1 class="application-title">Application Detail</h1>
+
+        <div class="application-card">
+            <div class="application-card-header">
+                <p><strong>Applicant:</strong> {{ application.applicant }}</p>
+                <p><strong>Pet:</strong> {{ application.pet }}</p>
+                <p><strong>Status:</strong> {{ application.application_status }}</p>
+            </div>
+            {% if application.manager_comments %}
+                <div class="application-card-body">
+                    <p><strong>Manager Comments:</strong> {{ application.manager_comments }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+    .application-title {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
+
+    .application-card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .application-card-header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .application-card-body {
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

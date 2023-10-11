@@ -2,33 +2,97 @@
 
 {% block title %} Dashboard {% endblock %}
 
-
-
-
 {% block content %}
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    {% if messages %}
+        <div id="flash-messages" class="messages-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    {% endif %}
+
+    <h1 class="dashboard-title">Dashboard</h1>
+
+    <h3 class="dashboard-subtitle">My Application(s)</h3>
+
+    <div class="card-container">
+        {% for application in applications %}
+            <a href="{% url 'public_adoption_application_detail' application_id=application.id %}">  
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{% url 'public_adoption_application_detail' application_id=application.id %}" class="card-link">{{ application.pet }}</a>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Pet Name:</strong> {{ application.pet }}</p>
+                        <p><strong>Status:</strong> {{ application.application_status }}</p>
+                        <p><strong>Last Updated:</strong> {{ application.last_updated }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
 </div>
-{% endif %}
 
+<style>
+    .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
 
-<h1> Dashboard </h1>
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
 
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
 
-<h3> My Application(s) </h3>
-<ul>
-{% for application in applications  %}
+    .dashboard-title {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
 
- <li>  <a href="{% url 'public_adoption_application_detail' application_id=application.id %}"> {{ application.pet }} </a> </li> 
+    .dashboard-subtitle {
+        font-size: 20px;
+        margin: 20px 0;
+    }
 
-{% endfor %}
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 
-</ul>
+    .card {
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
 
+    .card-header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
+    .card-link {
+        text-decoration: none;
+        color: #3498db;
+    }
+
+    .card-body {
+        margin-top: 10px;
+    }
+</style>
 {% endblock %}

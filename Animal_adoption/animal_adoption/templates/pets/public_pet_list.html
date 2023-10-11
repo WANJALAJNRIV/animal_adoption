@@ -2,24 +2,157 @@
 
 {% block title %} Pet List {% endblock %}
 
+{% block links %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            color: #3c763d;
+        }
+
+        .pet-list-title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .pet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pet-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pet-image {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .pet-link {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    
+        select.form-control {
+            height: 40px; /* Adjust select box height as needed */
+        }
+    
+        .btn-primary {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    
+        .btn-primary:hover {
+            background-color: #267bbf;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
+    <div class="container">
+        {% if messages %}
+            <div id="flash-messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-</div>
-{% endif %}
-
-    <h2>Pet List</h2>
-    <ul>
-        {% for pet in pets %}
-            <li><img src="{{ pet.image.url }}" alt="{{ pet.name }}" width=100px /> <a href="{% url 'public_pet_detail' pet.id %}"> {{ pet.name }} </a></li>
-        {% endfor %}
-    </ul>
-
-  
-    {% endblock %}
+        <h2 class="pet-list-title">
+            {% if grouped_pets %}
+                Pet List
+            {% else %}
+                Pet List
+            {% endif %}
+        </h2>
+        <ul class="pet-list">
+            {% if grouped_pets %}
+                {% for group in grouped_pets %}
+                    <li>
+                        <ul>
+                            {% for pet in pets %}
+                                {% if pet.species == group.species and pet.breed == group.breed %}
+                                    {% if pet.adoption_fee == form.cleaned_data.adoption_fee|default:pet.adoption_fee %}
+                                        {% if pet.suburb == form.cleaned_data.suburb|default:pet.suburb %}
+                                            {% if pet.state == form.cleaned_data.state|default:pet.state %}
+                                                <li>
+                                                    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
+                                                    <a href="{% url 'public_pet_detail' pet.id %}" class="pet-link">{{ pet.name }}</a>
+                                                    <p> Suburb: {{ pet.suburb }}, State: {{ pet.state }} </p>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% empty %}
+                    <li>No pets found.</li>
+                {% endfor %}
+            {% else %}
+                {% for pet in pets %}
+                    <li class="pet-item">
+                        <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
+                        <a href="{% url 'public_pet_detail' pet.id %}" class="pet-link">{{ pet.name }}</a>
+                        Suburb: {{ pet.suburb }}, State: {{ pet.state }}
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+        <div class="container">
+            <form method="GET">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        
+            </div>
+    </div>
+   
+    
+{% endblock %}

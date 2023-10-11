@@ -2,14 +2,52 @@
 
 {% block title %} Delete Pet {% endblock %}
 
-{% block content %} 
+{% block links %}
+<style>
+    .confirmation-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-    <h2>Confirm Deletion</h2>
-    <p>Are you sure you want to delete "{{ pet.name }}"?</p>
+    .page-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .confirmation-message {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .delete-button {
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #c0392b;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="confirmation-container">
+    <h2 class="page-title">Confirm Deletion</h2>
+    <p class="confirmation-message">Are you sure you want to delete "{{ pet.name }}"?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirm Delete</button>
+        <button type="submit" class="delete-button">Confirm Delete</button>
     </form>
-
-
-    {% endblock %}
+</div>
+{% endblock %}

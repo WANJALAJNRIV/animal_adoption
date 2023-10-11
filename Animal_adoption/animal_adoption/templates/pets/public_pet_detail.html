@@ -1,41 +1,129 @@
 {% extends "base.html" %}
 
-
 {% block title %} Pet Detail {% endblock %}
 
-
 {% block content %}
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    {% if messages %}
+        <div id="flash-messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    {% endif %}
+
+    <div class="pet-detail-container">
+        <div class="pet-info">
+            <h2 class="pet-title">Pet Detail</h2>
+            <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
+
+            <h3 class="pet-name">{{ pet.name }}</h3>
+            <p class="pet-attribute">Species: {{ pet.species }}</p>
+            <p class="pet-attribute">Breed: {{ pet.breed }}</p>
+            <p class="pet-attribute">Age: {{ pet.age }}</p>
+            <p class="pet-attribute">Gender: {{ pet.gender }}</p>
+            <p class="pet-attribute">Description: {{ pet.description }}</p>
+            <p class="pet-attribute">Adoption Status: {{ pet.adoption_status }}</p>
+            <p class="pet-attribute">Suburb: {{ pet.suburb }}</p>
+            <p class="pet-attribute">State: {{ pet.state }}</p>
+            <p class="pet-attribute">Adoption Fee: {{ pet.adoption_fee }}</p>
+            <p class="pet-attribute">Date Joined: {{ pet.date_added }}</p>
+            <div class="pet-actions">
+                <a href="{% url 'apply_for_adoption' pet_id=pet.id %}" class="btn btn-primary">Apply for Adoption</a>
+                <a href="{% url 'public_pets_view' %}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+
+       
+    </div>
 </div>
-{% endif %}
 
-    <h2>Pet Detail</h2>
-    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
+<style>
 
-    <h3>{{ pet.name }}</h3>
-    <p>Species: {{ pet.species }}</p>
-    <p>Breed: {{ pet.breed }}</p>
-    <p> Age: {{ pet.age }}</p> 
-    <p> Gender: {{ pet.gender }}</p>
-    <p> Description: {{ pet.description }} </p>
-    <p> Adoption Status: {{ pet.adoption_status }}</p>
-    <p> Suburb: {{ pet.suburb }}  </p>
-    <p> State: {{ pet.state }} </p>
-    <p> Adoption Fee: {{ pet.adoption_fee }} </p>
+    .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
 
-    <p> Date Joined: {{ pet.date_added }} </p>
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
 
-    <a href="{% url 'apply_for_adoption' pet_id=pet.id %}"> Apply </a>
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    
+    .pet-detail-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-    <a href="{% url 'public_pets_view'  %}"> Back to list  </a>
+    .pet-title {
+        font-size: 24px;
+        color: #333;
+    }
 
+    .pet-info {
+        flex: 1;
+        margin-right: 20px;
+    }
 
+    .pet-image {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #3498db;
+        border-radius: 50%;
+    }
 
+    .pet-name {
+        font-size: 20px;
+        margin: 10px 0;
+    }
 
+    .pet-attribute {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+
+    .pet-actions {
+        width:50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 10px 0;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #3498db;
+    }
+
+    .btn-primary:hover {
+        background-color: #267bbf;
+    }
+
+    .btn-secondary {
+        background-color: #ccc;
+    }
+
+    .btn-secondary:hover {
+        background-color: #999;
+    }
+</style>
 {% endblock %}

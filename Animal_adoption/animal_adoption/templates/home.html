@@ -1,47 +1,118 @@
-
-
 {% extends "base.html" %}
-{% load static%}
+{% load static %}
 
+{% block title %}Home{% endblock %}
+{% block links %}
+<style>
+  /* General Styles */
+ 
 
-{% block title %}Home {% endblock %}
-{% block links %} 
-<style> 
+  h1 {
+    color: #333;
+    text-align: center;
+  }
 
+  /* Pet Styles */
+  .pet-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-</style> 
+  .pet-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
 
+  .pet-card a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
+  /* Welcome Message Styles */
+  .welcome-message {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .btn:hover {
+    background-color: #2980b9;
+  }
+
+   .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+</style>
 {% endblock %}
 
+{% block content %}
+
+<div class="welcome-message">
+  <p>Hello, welcome to Annie's adoption centre. Explore our pets and shelters!</p>
+  {% if messages %}
+  <div id="flash-messages" class="messages-container">
+      {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+          </div>
+      {% endfor %}
+  </div>
+{% endif %}
+</div>
 
 
-{% block content%}
+<div>
+  {% for pet in pets %}
+  <div class="pet-card">
+    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
+    <a href="{% url 'public_pet_detail' pet.id %}">{{ pet.name }}</a>
+  </div>
+  {% endfor %}
+</div>
 
+<div class="welcome-message">
+  <h3>Ready to find your new friend?</h3>
+  <a class="btn" href="{% url 'public_pets_view' %}">Browse Pets</a>
+</div>
 
-
-{% for shelter in shelters %}
-<p> {{ shelter }}
-
-{% endfor %}
-
-
-{% for pet in pets %}
-<li><img src="{{ pet.image.url }}" alt="{{ pet.name }}" width=100px /> <a href="{% url 'public_pet_detail' pet.id %}"> {{ pet.name }} </a></li>
-
-
-{% endfor %}
-
-
-
-
-
-    <p> Hello, welcome to Annie adoption centre. </p>
-
-
-     
-
-    <h3> Wanna see pets? <a href="{% url 'public_pets_view' %}"> Pets </a></h3> 
-    <h3> we also have shelter check them out <a href="{% url 'shelter_list' %}"> shelter</a></h3>
-
-{% endblock%}
+{% endblock %}

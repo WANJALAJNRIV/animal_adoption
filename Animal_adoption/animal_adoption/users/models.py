@@ -26,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     adoption_applications = models.ManyToManyField('adoption_application.AdoptionApplication')
     role = models.CharField(
         max_length=20,
-        choices=[('user', 'User'), ('manager', 'Manager')],
+        choices=[('user', 'User'), ('admin', 'Admin'), ('application_manager', 'Application Manager'), ('pet_manager', 'Pet Manager')],
         default='user'
     )
     is_active = models.BooleanField(default=True)

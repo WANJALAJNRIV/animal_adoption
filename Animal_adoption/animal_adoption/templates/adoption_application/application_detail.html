@@ -1,41 +1,104 @@
 {% extends "users/base_staff.html" %}
 
-
 {% block title %} Adoption Application Details {% endblock %}
 
+{% block links %}
+<style>
+    .details-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-{% block content %} 
+    .page-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
 
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-</div>
-{% endif %}
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
 
-<h1>Adoption Application Details</h1>
-    
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+    .pet-info,
+    .applicant-info {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .pet-info h2,
+    .applicant-info h2 {
+        color: #3498db;
+    }
+
+    .pet-image {
+        width: 100px;
+    }
+
+    .approve-button,
+    .reject-button {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .approve-button:hover,
+    .reject-button:hover {
+        background-color: #267bb9;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="details-container">
+    <h1 class="page-title">Adoption Application Details</h1>
+    {% if messages %}
+    <div id="flash-messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <!-- Pet Information -->
     <div class="pet-info">
-        <h2> Pet Details </h2>
-        <img src="{{ application.pet.image.url }}" alt="{{ application.pet.name }}" width="100px" />
-        <p><strong>Pet Name: {{ application.pet.name }}</strong></p>
+        <h2>Pet Details</h2>
+        <img src="{{ application.pet.image.url }}" alt="{{ application.pet.name }}" class="pet-image" />
+        <p><strong>Pet Name:</strong> {{ application.pet.name }}</p>
         <p>Description: {{ application.pet.description }}</p>
         <p>Age: {{ application.pet.age }}</p>
         <p>Gender: {{ application.pet.gender }}</p>
         <p>Species: {{ application.pet.species }}</p>
         <p>Breed: {{ application.pet.breed }}</p>
-        <p>Suburb:{{ application.pet.suburb }}</p>
+        <p>Suburb: {{ application.pet.suburb }}</p>
         <p>State: {{ application.pet.state }}</p>
     </div>
 
-
     <!-- Applicant Information -->
-    <div>
-        <h2> Applicant Details </h2>
+    <div class="applicant-info">
+        <h2>Applicant Details</h2>
         <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
         <p>First Name: {{ application.applicant.first_name }}</p>
         <p>Last Name: {{ application.applicant.last_name }}</p>
@@ -43,17 +106,19 @@
         <p>Phone Number: {{ application.applicant.phone_number }}</p>
         <p>Email: {{ application.applicant.email }}</p>
         <p>Application Date: {{ application.application_date }}</p>
-        {% if application.adopter_comments %}
-                <h2>Adopter Comments:</h2>
-                <p>{{ application.adopter_comments }}</p>
-            {% endif %}
+        <p>Residence or outdoor_space: {{ application.residence_or_outdoor_space }}</p>
+        <p>Number of existing pets: {{ application.number_of_existing_pets }}</p>
+        <p>Pet care routine: {{ application.pet_care_routine }}</p>
+        <p>Training and Socialization: {{ application.training_and_Socialization }}</p>
+        {% if application.adopter_inquiries %}
+            <h2>Adopter Comments or Inquiries:</h2>
+            <p>{{ application.adopter_inquiries }}</p>
+        {% endif %}
     </div>
-  
-  
-    <a href="{% url 'approve_application' application.id %}">Approve</a>
-    <a href="{% url 'reject_application' application.id %}">Reject</a>
+
+    <a href="{% url 'approve_application' application.id %}" class="approve-button">Approve</a>
+    <a href="{% url 'reject_application' application.id %}" class="reject-button">Reject</a>
 
     <a href="{% url 'adoption_application_list' %}">Back to Application List</a>
-
-
+</div>
 {% endblock %}

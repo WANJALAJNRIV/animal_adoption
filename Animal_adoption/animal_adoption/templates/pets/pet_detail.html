@@ -1,43 +1,88 @@
 {% extends "users/base_staff.html" %}
 
-
 {% block title %} Pet Detail {% endblock %}
 
+{% block links %}
+<style>
+    .pet-detail-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .pet-image {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .pet-details {
+        margin-top: 20px;
+    }
+
+    .pet-details p {
+        margin: 10px 0;
+    }
+
+    .edit-link, .delete-link {
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .edit-link:hover, .delete-link:hover {
+        background-color: #267bb9;
+    }
+
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-</div>
-{% endif %}
-
-    <h2>Pet Detail</h2>
-    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" />
+<div class="pet-detail-container">
+    <h2 class="pet-title">Pet Detail</h2>
+    <img src="{{ pet.image.url }}" alt="{{ pet.name }}" class="pet-image" />
 
     <h3>{{ pet.name }}</h3>
-    <p>Species: {{ pet.species }}</p>
-    <p>Breed: {{ pet.breed }}</p>
-    <p> Age: {{ pet.age }}</p> 
-    <p> Gender: {{ pet.gender }}</p>
-    <p> Description: {{ pet.description }} </p>
-    <p> Adoption Status: {{ pet.adoption_status }}</p>
-    <p> Suburb: {{ pet.suburb }}  </p>
-    <p> State: {{ pet.state }} </p>
-    <p> Adoption Fee: {{ pet.adoption_fee }} </p>
-    <p> Shelter: {{ pet.shelter }} </p> 
-    <p> Adopter: {{ pet.adopter }}</p>
+    <div class="pet-details">
+        <p>Species: {{ pet.species }}</p>
+        <p>Breed: {{ pet.breed }}</p>
+        <p>Age: {{ pet.age }}</p>
+        <p>Gender: {{ pet.gender }}</p>
+        <p>Description: {{ pet.description }}</p>
+        <p>Adoption Status: {{ pet.adoption_status }}</p>
+        <p>Suburb: {{ pet.suburb }}</p>
+        <p>State: {{ pet.state }}</p>
+        <p>Adoption Fee: {{ pet.adoption_fee }}</p>
+        <p>Shelter: {{ pet.shelter }}</p>
+        <p>Adopter: {{ pet.adopter }}</p>
+        <p>Date Joined: {{ pet.date_added }}</p>
+    </div>
 
-    <p> Date Joined: {{ pet.date_added }} </p>
-
-    <a href="{% url 'pet_update' pet.id %}">Edit Pet</a>
-    <a href="{% url 'pet_delete' pet.id %}">Delete Pet</a>
-    <a href="{% url 'pet_list' %}">Back to Pet List </a>
-
-
-
+    <a href="{% url 'pet_update' pet.id %}" class="edit-link">Edit Pet</a>
+    <a href="{% url 'pet_delete' pet.id %}" class="delete-link">Delete Pet</a>
+    <a href="{% url 'pet_list' %}" class="back-link">Back to Pet List</a>
+</div>
 {% endblock %}

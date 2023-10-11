@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'users',
     'pets',
     'adoption_application',
-    'shelters',
 ]
 
 MIDDLEWARE = [

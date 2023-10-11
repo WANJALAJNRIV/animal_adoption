@@ -5,7 +5,7 @@
 </head>
 <body>
     {% if messages %}
-    <div id="flash-messages">
+    <div id="flash-messages" class="messages-container">
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
                 {{ message }}
@@ -13,13 +13,75 @@
         {% endfor %}
     </div>
     {% endif %}
-    <h2>User Login</h2>
-    <form method="post">
+    <h2 class="login-title">User Login</h2>
+    <form method="post" class="login-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit" class="login-button">Login</button>
     </form>
 
-    <p> Don't have an account?  <a href="{% url 'register' %}">Register </a></p>  
+    <p class="register-link">Don't have an account? <a href="{% url 'register' %}" class="register-button">Register</a></p>
 </body>
 </html>
+
+<style>
+    .messages-container {
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+    .login-title {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+    }
+
+    .login-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-button {
+        display: block;
+        margin-top: 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-button:hover {
+        background-color: #267bb9;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .register-button {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+    }
+</style>

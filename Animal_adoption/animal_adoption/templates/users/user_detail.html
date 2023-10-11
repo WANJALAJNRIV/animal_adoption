@@ -1,34 +1,65 @@
 {% extends "users/base_staff.html" %}
 
+{% block title %} User Detail {% endblock %}
 
-{% block title %} User Detail  {% endblock %}
+{% block links %}
+<style>
+    .user-detail-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
+    .page-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
+
+    .user-info {
+        text-align: left;
+    }
+
+    .user-info p {
+        margin: 10px 0;
+    }
+
+    .edit-button, .delete-button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .edit-button:hover, .delete-button:hover {
+        background-color: #267bb9;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
+<div class="user-detail-container">
+    <a href="{% url 'user_list' %}" class="back-link">Back to User List</a>
+    <h2 class="page-title">User Detail</h2>
+    <div class="user-info">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+    </div>
+    <a href="{% url 'user_update' user.id %}" class="edit-button">Edit User</a>
+    <a href="{% url 'user_delete' user.id %}" class="delete-button">Delete User</a>
 </div>
-{% endif %}
-
-
-
-    <h2>user Detail</h2>
-    <p><strong>Username:</strong> {{ user.username }}</p>
-    <p><strong>First Name:</strong> {{ user.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-    <p><strong>Address:</strong> {{ user.address }}</p>
-
-    <a href="{% url 'user_update' user.id %}">Edit User</a>
-    <a href="{% url 'user_delete' user.id %}">Delete User</a>
-
-    <a href="{% url 'user_list' %}">Back to users list </a>
-
-
-    {% endblock %}
+{% endblock %}

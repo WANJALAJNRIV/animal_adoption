@@ -1,30 +1,88 @@
 {% extends "users/base_staff.html" %}
 
-
 {% block title %} Adoption Application List Pet {% endblock %}
 
+{% block links %}
+<style>
+    .adoption-applications-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-{% block content %} 
+    .page-title {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+    }
 
-{% if messages %}
-<div id="flash-messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-    {% endfor %}
+    .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+
+    .application-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .application-item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .pet-image {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .application-link {
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="adoption-applications-container">
+    <h2 class="page-title">Adoption Application List</h2>
+    {% if messages %}
+    <div id="flash-messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <ul class="application-list">
+        {% for applied in grouped_applications %}
+            <li class="application-item">
+                <img src="{{ applied.image.url }}" alt="{{ applied.name }}" class="pet-image" />
+                <a href="{% url 'pet_adoption_applications' pet_id=applied.id %}" class="application-link">
+                    {{ applied.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No adoption applications available.</li>
+        {% endfor %}
+    </ul>
 </div>
-{% endif %}
-
-
-  <ul>
-  {% for applied in grouped_applications %}
-
-  <li> <a href="{% url 'pet_adoption_applications' pet_id=applied.id %}" >  {{ applied.name }}</a></li>
-  {% empty %}
-      <li>No adoption applications available.</li> 
-
-  {% endfor %}
-
-  </ul>
 {% endblock %}
