@@ -160,12 +160,32 @@ def user_dashboard(request):
 
 @login_required
 def staff_dashboard(request):
+    """
+    Display the staff dashboard.
+
+    This view displays the staff dashboard and is protected with the login_required decorator.
+    
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+    :return: A rendered HTML template.
+    :rtype: HttpResponse
+    """
     return render(request, 'users/staff_dashboard.html')
 
 
 @login_required
 @admin_required
 def user_list(request):
+    """
+    Display a list of users.
+
+    This view displays a list of users and is protected with the login_required and admin_required decorators.
+
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+    :return: A rendered HTML template with a list of users.
+    :rtype: HttpResponse
+    """
 
     users = User.objects.all()
     return render(request, 'users/user_list.html', {'users': users})
@@ -174,6 +194,18 @@ def user_list(request):
 @login_required
 @admin_required
 def user_detail(request, user_id):
+    """
+    Display details of a user.
+
+    This view displays the details of a specific user and is protected with the login_required and admin_required decorators.
+
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+    :param user_id: The ID of the user to display.
+    :type user_id: int
+    :return: A rendered HTML template with the user's details.
+    :rtype: HttpResponse
+    """
   
     user = get_object_or_404(User, pk=user_id)
     return render(request, 'users/user_detail.html', {'user': user})
@@ -182,6 +214,18 @@ def user_detail(request, user_id):
 @login_required
 @admin_required
 def user_create(request):
+    """
+    Create a new user.
+
+    This view allows administrators to create new user accounts. It is protected with the login_required and admin_required decorators.
+    If the request method is POST, it processes the user creation form and saves the new user. 
+    If the request method is GET, it displays the user creation form.
+
+    :param request: The HTTP request object.
+    :type request: HttpRequest
+    :return: A rendered HTML template or a redirect response.
+    :rtype: HttpResponse
+    """
 
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -199,6 +243,21 @@ def user_create(request):
 @login_required
 @admin_required
 def user_update(request, pk):
+    """
+    Update an existing user.
+
+    This view allows administrators to update the information of an existing user account.
+    It is protected with the login_required and admin_required decorators.
+    If the request method is POST, it processes the user update form and saves the changes.
+    If the request method is GET, it displays the user update form with the user's current information.
+
+    :param request: The HTTP request object.
+    :param pk: The primary key of the user to be updated.
+    :type request: HttpRequest
+    :type pk: int
+    :return: A rendered HTML template or a redirect response.
+    :rtype: HttpResponse
+    """
  
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
@@ -217,6 +276,21 @@ def user_update(request, pk):
 @login_required
 @admin_required
 def user_delete(request, pk):
+    """
+    Delete an existing user.
+
+    This view allows administrators to delete an existing user account.
+    It is protected with the login_required and admin_required decorators.
+    If the request method is POST, it deletes the user account.
+    If the request method is GET, it displays a confirmation page before deleting the user.
+
+    :param request: The HTTP request object.
+    :param pk: The primary key of the user to be deleted.
+    :type request: HttpRequest
+    :type pk: int
+    :return: A rendered HTML template or a redirect response.
+    :rtype: HttpResponse
+    """
  
     user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
