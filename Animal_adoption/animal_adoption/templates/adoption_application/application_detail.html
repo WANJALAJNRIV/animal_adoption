@@ -1,63 +1,72 @@
-{% extends "users/base_staff.html" %}
+{% extends "users/base_staff.html" %} {%load static%} {% block title %} Adoption
+Application Details {% endblock %} {% block links %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/adoption_application/application_detail.css' %}"
+/>
 
-{%load static%}
-
-{% block title %} Adoption Application Details {% endblock %}
-
-{% block links %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/adoption_application/application_detail.css' %}">
-
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="details-container">
-    <h1 class="page-title">Adoption Application Details</h1>
-    {% if messages %}
-    <div id="flash-messages">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
+  <h1 class="page-title">Adoption Application Details</h1>
+  {% if messages %}
+  <div id="flash-messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <!-- Pet Information -->
+  <div class="pet-info">
+    <h2>Pet Details</h2>
+    <img
+      src="{{ application.pet.image.url }}"
+      alt="{{ application.pet.name }}"
+      class="pet-image"
+    />
+    <p><strong>Pet Name:</strong> {{ application.pet.name }}</p>
+    <p>Description: {{ application.pet.description }}</p>
+    <p>Age: {{ application.pet.age }}</p>
+    <p>Gender: {{ application.pet.gender }}</p>
+    <p>Species: {{ application.pet.species }}</p>
+    <p>Breed: {{ application.pet.breed }}</p>
+    <p>Suburb: {{ application.pet.suburb }}</p>
+    <p>State: {{ application.pet.state }}</p>
+  </div>
+
+  <!-- Applicant Information -->
+  <div class="applicant-info">
+    <h2>Applicant Details</h2>
+    <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
+    <p>First Name: {{ application.applicant.first_name }}</p>
+    <p>Last Name: {{ application.applicant.last_name }}</p>
+    <p>Address: {{ application.applicant.address }}</p>
+    <p>Phone Number: {{ application.applicant.phone_number }}</p>
+    <p>Email: {{ application.applicant.email }}</p>
+    <p>Application Date: {{ application.application_date }}</p>
+    <p>
+      Residence or outdoor_space: {{ application.residence_or_outdoor_space }}
+    </p>
+    <p>Number of existing pets: {{ application.number_of_existing_pets }}</p>
+    <p>Pet care routine: {{ application.pet_care_routine }}</p>
+    <p>
+      Training and Socialization: {{ application.training_and_Socialization }}
+    </p>
+    {% if application.adopter_inquiries %}
+    <h2>Adopter Comments or Inquiries:</h2>
+    <p>{{ application.adopter_inquiries }}</p>
     {% endif %}
-    <!-- Pet Information -->
-    <div class="pet-info">
-        <h2>Pet Details</h2>
-        <img src="{{ application.pet.image.url }}" alt="{{ application.pet.name }}" class="pet-image" />
-        <p><strong>Pet Name:</strong> {{ application.pet.name }}</p>
-        <p>Description: {{ application.pet.description }}</p>
-        <p>Age: {{ application.pet.age }}</p>
-        <p>Gender: {{ application.pet.gender }}</p>
-        <p>Species: {{ application.pet.species }}</p>
-        <p>Breed: {{ application.pet.breed }}</p>
-        <p>Suburb: {{ application.pet.suburb }}</p>
-        <p>State: {{ application.pet.state }}</p>
-    </div>
+  </div>
 
-    <!-- Applicant Information -->
-    <div class="applicant-info">
-        <h2>Applicant Details</h2>
-        <p><strong>Applicant:</strong> {{ application.applicant.username }}</p>
-        <p>First Name: {{ application.applicant.first_name }}</p>
-        <p>Last Name: {{ application.applicant.last_name }}</p>
-        <p>Address: {{ application.applicant.address }}</p>
-        <p>Phone Number: {{ application.applicant.phone_number }}</p>
-        <p>Email: {{ application.applicant.email }}</p>
-        <p>Application Date: {{ application.application_date }}</p>
-        <p>Residence or outdoor_space: {{ application.residence_or_outdoor_space }}</p>
-        <p>Number of existing pets: {{ application.number_of_existing_pets }}</p>
-        <p>Pet care routine: {{ application.pet_care_routine }}</p>
-        <p>Training and Socialization: {{ application.training_and_Socialization }}</p>
-        {% if application.adopter_inquiries %}
-            <h2>Adopter Comments or Inquiries:</h2>
-            <p>{{ application.adopter_inquiries }}</p>
-        {% endif %}
-    </div>
+  <a
+    href="{% url 'approve_application' application.id %}"
+    class="approve-button"
+    >Approve</a
+  >
+  <a href="{% url 'reject_application' application.id %}" class="reject-button"
+    >Reject</a
+  >
 
-    <a href="{% url 'approve_application' application.id %}" class="approve-button">Approve</a>
-    <a href="{% url 'reject_application' application.id %}" class="reject-button">Reject</a>
-
-    <a href="{% url 'adoption_application_list' %}">Back to Application List</a>
+  <a href="{% url 'adoption_application_list' %}">Back to Application List</a>
 </div>
 {% endblock %}

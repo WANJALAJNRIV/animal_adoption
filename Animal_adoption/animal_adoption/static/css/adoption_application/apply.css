@@ -1,64 +1,77 @@
+/* Default styles for smaller screens */
+.apply-for-adoption-container {
+    text-align: center;
+}
 
-    .apply-for-adoption-container {
-        text-align: center;
-    }
+.messages-container {
+    text-align: left;
+    margin: 20px 0;
+}
 
-    .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
+.alert {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
-    .alert {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
 
-    .adoption-title {
-        font-size: 24px;
-        color: #333;
-    }
+.adoption-title {
+    font-size: 24px;
+    color: #333;
+}
 
-    .adoption-subtitle {
-        font-size: 18px;
-        margin: 20px 0;
-    }
+.adoption-subtitle {
+    font-size: 18px;
+    margin: 20px 0;
+}
 
+.adoption-form {
+    max-width: 100%;
+    padding: 0 20px; /* Add some padding to the sides for larger screens */
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #267bbf;
+}
+
+.error {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 768px) {
     .adoption-form {
-        max-width: 400px;
-        margin: 0 auto;
+        max-width: 400px; /* Restore the maximum width for larger screens */
     }
-
-    .btn {
-        padding: 10px 20px;
-        margin: 10px 0;
-        text-align: center;
-        text-decoration: none;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .btn-primary {
-        background-color: #3498db;
-    }
-
-    .btn-primary:hover {
-        background-color: #267bbf;
-    }
-
-    .error {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
+}

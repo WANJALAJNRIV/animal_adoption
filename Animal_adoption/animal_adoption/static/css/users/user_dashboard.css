@@ -1,67 +1,71 @@
+.messages-container {
+    text-align: left;
+    margin: 20px 0;
+}
 
-    .messages-container {
-        text-align: left;
-        margin: 20px 0;
-    }
+.alert {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
 
-    .alert {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
 
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
+.dashboard-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
 
-    .dashboard-title {
-        font-size: 24px;
-        color: #333;
-        text-align: center;
-    }
+.dashboard-subtitle {
+    font-size: 20px;
+    margin: 20px 0;
+}
 
-    .dashboard-subtitle {
-        font-size: 20px;
-        margin: 20px 0;
-    }
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-    .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
+.card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
 
-    .card {
-        width: 300px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-    }
+.card-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-    .card-header {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+.card-link {
+    text-decoration: none;
+    color: #3498db;
+}
 
-    .card-link {
-        text-decoration: none;
-        color: #3498db;
-    }
+.card-body {
+    margin-top: 10px;
+}
 
-    .card-body {
-        margin-top: 10px;
-    }
-    .error {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
+.error {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

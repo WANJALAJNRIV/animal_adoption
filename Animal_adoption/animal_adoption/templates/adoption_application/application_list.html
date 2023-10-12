@@ -1,37 +1,39 @@
-{% extends "users/base_staff.html" %}
+{% extends "users/base_staff.html" %} {%load static%} {% block title %} Adoption
+Application List Pet {% endblock %} {% block links %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/adoption_application/application_list.css' %}"
+/>
 
-{%load static%}
-
-{% block title %} Adoption Application List Pet {% endblock %}
-
-{% block links %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/adoption_application/application_list.css' %}">
-
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="adoption-applications-container">
-    <h2 class="page-title">Adoption Application List</h2>
-    {% if messages %}
-    <div id="flash-messages">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    <ul class="application-list">
-        {% for applied in grouped_applications %}
-            <li class="application-item">
-                <img src="{{ applied.image.url }}" alt="{{ applied.name }}" class="pet-image" />
-                <a href="{% url 'pet_adoption_applications' pet_id=applied.id %}" class="application-link">
-                    {{ applied.name }}
-                </a>
-            </li>
-        {% empty %}
-            <li>No adoption applications available.</li>
-        {% endfor %}
-    </ul>
+  <h2 class="page-title">Adoption Application List</h2>
+  {% if messages %}
+  <div id="flash-messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <ul class="application-list">
+    {% for applied in grouped_applications %}
+    <li class="application-item">
+      <img
+        src="{{ applied.image.url }}"
+        alt="{{ applied.name }}"
+        class="pet-image"
+      />
+      <a
+        href="{% url 'pet_adoption_applications' pet_id=applied.id %}"
+        class="application-link"
+      >
+        {{ applied.name }}
+      </a>
+    </li>
+    {% empty %}
+    <li>No adoption applications available.</li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}

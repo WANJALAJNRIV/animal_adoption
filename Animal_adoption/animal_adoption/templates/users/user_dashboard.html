@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block content %}
-    {% if messages %}
+    
+
+    <h1 class="dashboard-title">Dashboard</h1>
+    <div>
+        {% if messages %}
         <div id="flash-messages" class="messages-container">
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -18,8 +22,7 @@
             {% endfor %}
         </div>
     {% endif %}
-
-    <h1 class="dashboard-title">Dashboard</h1>
+    </div>
 
     <h3 class="dashboard-subtitle">My Application(s)</h3>
 

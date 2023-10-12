@@ -79,7 +79,7 @@ def approve_application(request, application_id):
             # Update related applications to 'Rejected' with manager comments
             for related_application in related_applications:
                 related_application.application_status = 'Rejected'
-                related_application.manager_comments = 'The pet has already been adopted'
+                related_application.manager_comments = 'Thank you for considering adoption! It seems that the pet you were interested in has already found a loving home. Don\'t be disheartened – there are many other wonderful pets eagerly waiting for their forever families. We encourage you to explore our other available pets and give another furry friend the chance of a loving home.'
                 related_application.save()
             messages.success(request, 'Adoption application approved successfully.')
             return redirect('adoption_application_list')

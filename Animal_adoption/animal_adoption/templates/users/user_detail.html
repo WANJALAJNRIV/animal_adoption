@@ -5,13 +5,19 @@
 {% block title %} User Detail {% endblock %}
 
 {% block links %}
-<style>
     <link rel="stylesheet" type="text/css" href="{% static 'css/users/user_detail.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="user-detail-container">
     <a href="{% url 'user_list' %}" class="back-link">Back to User List</a>
+    <div id="flash-messages" class="messages-container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
     <h2 class="page-title">User Detail</h2>
     <div class="user-info">
         <p><strong>Username:</strong> {{ user.username }}</p>

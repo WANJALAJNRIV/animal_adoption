@@ -1,71 +1,84 @@
+/* Default styles for smaller screens */
+.details-container {
+    max-width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+.page-title {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.alert {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.pet-info,
+.applicant-info {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.pet-info h2,
+.applicant-info h2 {
+    color: #3498db;
+}
+
+.pet-image {
+    width: 100px;
+}
+
+.approve-button,
+.reject-button {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.approve-button:hover,
+.reject-button:hover {
+    background-color: #267bb9;
+}
+
+.error {
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 768px) {
     .details-container {
         max-width: 800px;
         margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
-    .page-title {
-        font-size: 24px;
-        margin-top: 20px;
-        color: #333;
-        text-align: center;
-    }
-    .alert {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .alert-success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-        color: #3c763d;
-    }
-
-    .pet-info,
-    .applicant-info {
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-top: 20px;
-    }
-
-    .pet-info h2,
-    .applicant-info h2 {
-        color: #3498db;
-    }
-
-    .pet-image {
-        width: 100px;
-    }
-
-    .approve-button,
-    .reject-button {
-        display: inline-block;
-        margin-top: 20px;
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-    }
-
-    .approve-button:hover,
-    .reject-button:hover {
-        background-color: #267bb9;
-    }
-    .error {
-        background-color: #ff6b6b; /* Red background */
-        color: #fff; /* White text */
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
+}

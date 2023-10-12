@@ -1,18 +1,15 @@
-{%load static%}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+{% load static%}
+
+{% block title %} Login {% endblock %}
+
+{% block links %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/auth/login.css' %}">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/icon_.png' %}">
+{% endblock %}
 
-    
 
-</head>
-<body>
+{% block content %}
     {% if messages %}
     <div id="flash-messages" class="messages-container">
         {% for message in messages %}
@@ -30,7 +27,6 @@
     </form>
 
     <p class="register-link">Don't have an account? <a href="{% url 'register' %}" class="register-button">Register</a></p>
-</body>
-</html>
 
 
+    {% endblock %}

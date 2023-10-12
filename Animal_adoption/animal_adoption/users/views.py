@@ -1,3 +1,5 @@
+# User views 
+
 from .forms import (
     UserForm,
     RegisterationForm,
@@ -260,14 +262,19 @@ def user_update(request, pk):
     """
  
     user = get_object_or_404(User, pk=pk)
+    previous_password = user.password
+
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])  
-            user.save()
+            user = form.save(commit=False)  
+            new_password = form.cleaned_data.get('password')
+            if new_password and previous_password != new_password:
+                # Password has changed, update it
+                user.set_password(new_password)
+            user.save()  # Save the user object
             messages.success(request, 'User has been updated successfully.')
-            return redirect('user_list')
+            return redirect('user_detail', user_id=pk)
     else:
         form = UserForm(instance=user)
     return render(request, 'users/user_form.html', {'form': form})

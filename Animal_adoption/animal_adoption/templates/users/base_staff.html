@@ -21,11 +21,12 @@
             <a href="{% url 'profile' %}">Profile</a>
             <a href="{% url 'logout' %}">Log Out</a>
         {% else %}
-            <a href="{% url 'login' %}">Login</a>  or <a href="{% url 'register' %}>Register</a>
+            <a href="{% url 'login' %}">Login</a>  or <a href="{% url 'register' %}">Register</a>
         {% endif %}
     </div>
 
     <h1 class="title">Welcome to Annie Arkwright's animal adoption organisation</h1>
+    <hr>
 
     {% block content %}{% endblock %}
 </body>

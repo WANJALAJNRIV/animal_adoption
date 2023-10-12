@@ -7,7 +7,6 @@ from django.db.models import Count
 from users.decorators import pet_manager_or_admin_required
 
 
-
 def search_pets(request):
     """
     View for searching and filtering available pets.
@@ -51,6 +50,7 @@ def search_pets(request):
     grouped_pets = pets.values('species', 'breed').annotate(total=Count('id'))
 
     return render(request, 'search_pets.html', {'grouped_pets': grouped_pets, 'form': form})
+
 
 def public_pets_view(request):
     """

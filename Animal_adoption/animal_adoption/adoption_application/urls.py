@@ -3,23 +3,18 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # ... other URL patterns ...
 
-    path('apply/<int:pet_id>/', views.apply_for_adoption, name='apply_for_adoption',
-         name='apply_for_adoption'),
     # Allows users to apply for pet adoption.
+    path('apply/<int:pet_id>/', views.apply_for_adoption, name='apply_for_adoption'),
 
-    path('approve/<int:application_id>/', views.approve_application, name='approve_application',
-         name='approve_application'),
     # Allows application managers and administrators to approve an adoption application.
+    path('approve/<int:application_id>/', views.approve_application, name='approve_application'),
 
-    path('reject/<int:application_id>/', views.reject_application, name='reject_application',
-         name='reject_application'),
     # Allows application managers and administrators to reject an adoption application.
+    path('reject/<int:application_id>/', views.reject_application, name='reject_application'),
 
-    path('applications/', views.adoption_application_list, name='adoption_application_list',
-         name='adoption_application_list'),
     # Lists pending adoption applications for review.
+    path('applications/', views.adoption_application_list, name='adoption_application_list'),
 
     path('applications/<int:application_id>/', views.adoption_application_detail,
          name='adoption_application_detail'),

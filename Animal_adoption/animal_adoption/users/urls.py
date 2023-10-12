@@ -1,8 +1,10 @@
+# User Urls
+ 
 # Import the required modules and views
 from django.urls import path
 from . import views
 
-# Define the URL patterns for your app
+# Define the URL patterns for user app
 urlpatterns = [
     # Home page
     path('', views.home, name='home'),

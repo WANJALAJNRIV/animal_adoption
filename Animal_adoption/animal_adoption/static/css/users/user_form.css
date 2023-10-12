@@ -11,7 +11,8 @@
 .page-title {
     font-size: 24px;
     margin-top: 20px;
-    color: #3498db; /* Blue title */
+    color: #3498db;
+    /* Blue title */
     text-align: center;
 }
 
@@ -23,7 +24,8 @@
     display: block;
     margin-top: 10px;
     font-weight: bold;
-    color: #333; /* Dark label text */
+    color: #333;
+    /* Dark label text */
 }
 
 .form-input {
@@ -32,7 +34,8 @@
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: #333; /* Dark text */
+    color: #333;
+    /* Dark text */
 }
 
 .form-buttons {
@@ -66,8 +69,10 @@
 }
 
 .alert {
-    background-color: #ff6b6b; /* Red background */
-    color: #fff; /* White text */
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -80,8 +85,10 @@
 }
 
 .error {
-    background-color: #ff6b6b; /* Red background */
-    color: #fff; /* White text */
+    background-color: #ff6b6b;
+    /* Red background */
+    color: #fff;
+    /* White text */
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;

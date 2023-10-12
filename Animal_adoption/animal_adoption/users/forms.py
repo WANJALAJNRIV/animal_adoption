@@ -1,4 +1,5 @@
-# forms.py
+#User forms 
+
 from django import forms
 from .models import User
 
@@ -6,7 +7,11 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         # Define which fields from the User model should be included in this form.
-        fields = ['first_name', 'last_name','username', 'email', 'phone_number', 'address', 'role', 'password' ]  
+        fields = ['first_name', 'last_name','username', 'email', 'phone_number', 'address', 'role', 'password' ]
+        
+        password = forms.CharField(widget=forms.PasswordInput, required=False) 
+        
+        
 
 
 class RegisterationForm(forms.ModelForm):

@@ -10,17 +10,18 @@
 {% endblock %}
 
 {% block content %}
-    {% if messages %}
-    <div id="flash-messages">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    
 
     <div class="user-list-container">
+        {% if messages %}
+            <div id="flash-messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         <h2 class="page-title">User List</h2>
         <ol class="user-list">
             {% for user in users %}
